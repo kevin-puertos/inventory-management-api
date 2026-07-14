@@ -10,6 +10,7 @@ import com.kevinpuertos.inventory_management_api.user.entity.User;
 import com.kevinpuertos.inventory_management_api.user.mapper.IUserMapper;
 import com.kevinpuertos.inventory_management_api.user.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService implements  IUserService{
 
+    private final PasswordEncoder passwordEncoder;
     private final IUserRepository userRepository;
     private final IUserMapper userMapper;
 
@@ -38,7 +40,9 @@ public class UserService implements  IUserService{
     public void createUser(CreateUserDto user) {
         User userAux = this.findUserByName(user.userName());
         if(userAux == null){
-            userRepository.save(userMapper.createDtoToUser(user));
+            User user1 = userMapper.createDtoToUser(user);
+            user1.setPassword(passwordEncoder.encode(user.password()));
+            userRepository.save(user1);
         }
         throw new ResourceNotFoundException("Username already exists");
     }
