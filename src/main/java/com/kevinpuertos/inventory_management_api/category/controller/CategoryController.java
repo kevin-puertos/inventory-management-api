@@ -7,6 +7,7 @@ import com.kevinpuertos.inventory_management_api.category.service.ICategoryServi
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,19 +33,22 @@ public class CategoryController {
     }
 
     //Crear una categoria
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     private void createCategory(@RequestBody @Valid CreateCategoryDto newCategory){
         categoryService.createCategory(newCategory);
     }
 
     //Eliminar una categoria
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{idCategory}")
     public void deleteCategory(@PathVariable Long idCategory){
         categoryService.deleteCategory(idCategory);
-
     }
 
+
     //Actualizar una categoria
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{idCategory}")
     private ViewCategoryDto updateCategory(@PathVariable Long idCategory, @RequestBody  @Valid UpdateCategoryDto updateCategory){
         return categoryService.updateCategory(idCategory,updateCategory);

@@ -18,6 +18,10 @@ public class AuthService implements IAuthService{
         userService.createUser(createUserDto);
     }
 
+    @Override
+    public String login() {
+        return "";
+    }
 
 
 }
