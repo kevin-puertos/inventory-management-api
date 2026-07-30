@@ -13,7 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService implements  IUserService{
@@ -29,22 +32,24 @@ public class UserService implements  IUserService{
 
     @Override
     public User findUserByName(String name) {
-       User user = userRepository.findByUsername(name);
-       if(user == null){
-           throw new ResourceNotFoundException("User not found");
-       }
+       User user = userRepository.findByUsername(name)
+               .orElseThrow(
+                       () -> new ResourceNotFoundException("User not found")
+                       );
+
        return user;
     }
 
     @Override
     public void createUser(CreateUserDto user) {
-        User userAux = this.findUserByName(user.userName());
-        if(userAux == null){
+
+        if(! userRepository.findByUsername(user.username()).isPresent()){
             User user1 = userMapper.createDtoToUser(user);
             user1.setPassword(passwordEncoder.encode(user.password()));
             userRepository.save(user1);
+            return;
         }
-        throw new ResourceNotFoundException("Username already exists");
+        throw new ResourceAlreadyExistException("Username already exists");
     }
 
     @Override
@@ -61,16 +66,16 @@ public class UserService implements  IUserService{
     public ViewUserDto updateUser(UpdateUserDto updateUser,Long id) {
         User user = this.findUserById(id);
 
-        if(updateUser.userName() != null){
-           User userAux = this.findUserByName(updateUser.userName());
+        if(updateUser.username() != null){
+           User userAux = this.findUserByName(updateUser.username());
            if(userAux != null){
             throw new ResourceAlreadyExistException("Product name already exist");
            }
-           user.setUsername(updateUser.userName());
+           user.setUsername(updateUser.username());
         }
 
-        if(updateUser.userRole() != null){
-            user.setRol(UserRole.valueOf(updateUser.userRole()));
+        if(updateUser.rol() != null){
+            user.setRol(UserRole.valueOf(updateUser.rol()));
         }
 
         if(updateUser.password() != null){

@@ -80,7 +80,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
             filterChain.doFilter(request, response);//Continua con los demas filtros
 
-        }catch (ExpiredJwtException ex){//En  el caso que el token se encuentre expirado devuelve una respuesta con el error
+        }catch (ExpiredJwtException ex){//En  el Scaso que el token se encuentre expirado devuelve una respuesta con el error
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("""

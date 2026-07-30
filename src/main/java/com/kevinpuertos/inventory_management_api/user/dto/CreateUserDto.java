@@ -8,11 +8,11 @@ import jakarta.validation.constraints.Size;
 public record CreateUserDto(
         @NotNull
         @Size(min = 3, max = 30)
-        String userName,
+        String username,
 
         @NotNull
         @Pattern(regexp = "ADMIN|EMPLOYE",message = "Invalid rol, allowed status: ADMIN or EMPLOYE")
-        String userRole,
+        String rol,
 
         @NotNull
         @Size(min = 3, max = 30)

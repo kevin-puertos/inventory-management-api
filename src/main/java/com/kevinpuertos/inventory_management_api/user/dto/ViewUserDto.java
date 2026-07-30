@@ -1,4 +1,10 @@
 package com.kevinpuertos.inventory_management_api.user.dto;
 
-public record ViewUserDto() {
+
+public record ViewUserDto(
+
+        String username,
+
+        String rol
+) {
 }

@@ -3,6 +3,7 @@ package com.kevinpuertos.inventory_management_api.security.service;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import io.jsonwebtoken.Claims;
@@ -12,6 +13,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService implements IJwtService {
 
     @Value("${jwt.secret}")

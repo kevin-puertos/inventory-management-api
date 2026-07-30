@@ -30,14 +30,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
 
-        http    .authenticationProvider(authenticationProvider())
+        http    //Marca que al recibir una peticion use este authentiactionProvider
+                //En este caso DAOAuthenticationProvider
+                .authenticationProvider(authenticationProvider())
+
+                //Se desactiva porque estamos usando JWT y las solicitudes son sin estados
+                //Se envia el token en una cabecera oculta y no lo hace automaticamente el navegador
                 .csrf(csrf ->csrf.disable())
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers("/login","/register").permitAll()
+                        //Endpoints sin autenticacion
+                        .requestMatchers("/api/login","/api/register").permitAll()
+                        //Endpoints donde se necesita tener el rol de "ADMIN"
+                        //SI no lo tiene -> 403 Forbidden
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        //Todos los demas endpoints necesitan autenticación
                         .anyRequest().authenticated()
+
+                  //Entra en nuestro filtro jwt antes que los filtros de spring
                 ).addFilterBefore(
                         jwtFilter, UsernamePasswordAuthenticationFilter.class
+
+                //No crea sessiones
                 ).sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -45,12 +58,18 @@ public class SecurityConfig {
         return http.build();
     }
 
-
+    //Si alguien necesita un passwordEnncoder, usa BCrypt
     @Bean
     public PasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
     }
 
+
+    /*
+    * El componente AuthenticationManager coordina la autenticación
+    * LLama el componente que sepa autenticar  ->AuthenticationProvider -> DaoAuthenticationProvider
+    *
+    * */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
         throws  Exception{
@@ -58,9 +77,15 @@ public class SecurityConfig {
         }
 
     @Bean
+    /*
+    * Componente que sabe como autenticar un usuario
+    * En este caso DAO(Data Access Object) -> Busca el usuario en la base de datos
+    * */
     public AuthenticationProvider authenticationProvider(){
+        //Necesita saber  buscar usuarios -> customUserDetailsService
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(customUserDetailsService);
 
+        // Y tambien necesita saber  comparar contraseñas -> passwordEncoder()
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
