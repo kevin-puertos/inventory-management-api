@@ -32,11 +32,11 @@ public class CategoryService implements ICategoryService{
     }
 
     @Override
-    public void createCategory(CreateCategoryDto newCategory) {
+    public ViewCategoryDto createCategory(CreateCategoryDto newCategory) {
 
         if(!this.findCategoryByName(newCategory.name())){
-            categoryRepository.save(categoryMapper.ToCategory(newCategory));
-            return;
+            return  categoryMapper.ToViewCategoryDto(categoryRepository.save(categoryMapper.ToCategory(newCategory)));
+
         }
         throw new ResourceAlreadyExistException("Category already exist");
     }

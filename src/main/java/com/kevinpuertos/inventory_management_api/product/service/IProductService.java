@@ -15,6 +15,6 @@ public interface IProductService {
     List<ViewProductDto> viewAllProducts();
     ViewProductDto updateProduct(UpdateProductDto updateProductDto,Long idProduct);
     void deleteProduct(Long idProduct);
-
+    ViewProductDto sellProduct(Long idProduct, Integer cantProductSold);
 
 }

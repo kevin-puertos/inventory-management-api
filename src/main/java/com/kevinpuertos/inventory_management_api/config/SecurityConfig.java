@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/login","/api/register").permitAll()
                         //Endpoints donde se necesita tener el rol de "ADMIN"
                         //SI no lo tiene -> 403 Forbidden
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/users/admin**").hasRole("ADMIN")
                         //Todos los demas endpoints necesitan autenticación
                         .anyRequest().authenticated()
 

@@ -33,14 +33,12 @@ public class CategoryController {
     }
 
     //Crear una categoria
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    private void createCategory(@RequestBody @Valid CreateCategoryDto newCategory){
-        categoryService.createCategory(newCategory);
+    private ViewCategoryDto createCategory(@RequestBody @Valid CreateCategoryDto newCategory){
+        return categoryService.createCategory(newCategory);
     }
 
     //Eliminar una categoria
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{idCategory}")
     public void deleteCategory(@PathVariable Long idCategory){
         categoryService.deleteCategory(idCategory);
@@ -48,7 +46,6 @@ public class CategoryController {
 
 
     //Actualizar una categoria
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{idCategory}")
     private ViewCategoryDto updateCategory(@PathVariable Long idCategory, @RequestBody  @Valid UpdateCategoryDto updateCategory){
         return categoryService.updateCategory(idCategory,updateCategory);

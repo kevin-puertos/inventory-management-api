@@ -11,7 +11,7 @@ public interface ICategoryService {
 
      Category findByIdCategory(Long idCategory);
      boolean findCategoryByName(String categoryName);
-     void createCategory(CreateCategoryDto newCategory);
+     ViewCategoryDto createCategory(CreateCategoryDto newCategory);
      ViewCategoryDto viewCategory(Long idCategory);
      List<ViewCategoryDto> viewAllCategories();
      ViewCategoryDto updateCategory(Long idCategory, UpdateCategoryDto updateCategory);

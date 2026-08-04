@@ -12,7 +12,10 @@ import com.kevinpuertos.inventory_management_api.product.mapper.IProductMapper;
 import com.kevinpuertos.inventory_management_api.product.repository.IProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -99,4 +102,23 @@ public class ProductService implements IProductService{
         Product product = this.findProductById(idProduct);
         productRepository.delete(product);
     }
+
+    @Override
+    public ViewProductDto sellProduct(Long idProduct, Integer cantProductSold) {
+        Product product = this.findProductById(idProduct);
+
+        if(cantProductSold > product.getStock()){
+
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
+                    "There is not enough stock of the selected product to complete this action.");
+
+        }
+
+        product.setStock(product.getStock() - cantProductSold);
+        //Fala aplicar un registro de ventas
+
+        return productMapper.productTOViewDto( productRepository.save(product));
+    }
+
+
 }

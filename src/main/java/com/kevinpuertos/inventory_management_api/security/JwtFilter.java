@@ -1,6 +1,7 @@
 package com.kevinpuertos.inventory_management_api.security;
 
 import com.kevinpuertos.inventory_management_api.security.service.IJwtService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -49,7 +50,6 @@ public class JwtFilter extends OncePerRequestFilter {
             * */
 
             String username = jwtService.extractAllClaims(token).getSubject();//Obtengo el username del usuario
-
 
 
             /*
