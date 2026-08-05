@@ -39,11 +39,18 @@ public class SecurityConfig {
                 .csrf(csrf ->csrf.disable())
                 .authorizeHttpRequests( auth -> auth
                         //Endpoints sin autenticacion
-                        .requestMatchers("/api/login","/api/register").permitAll()
+                        .requestMatchers(
+                                "/api/login",
+                                "/api/register",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                                ).permitAll()
                         //Endpoints donde se necesita tener el rol de "ADMIN"
                         //SI no lo tiene -> 403 Forbidden
                         .requestMatchers("/api/users/admin**").hasRole("ADMIN")
-                        //Todos los demas endpoints necesitan autenticación
+                        //Todos los dámas endpoints necesitan autenticación
                         .anyRequest().authenticated()
 
                   //Entra en nuestro filtro jwt antes que los filtros de spring

@@ -56,7 +56,6 @@ public class ProductController {
             @PathVariable
             @NotNull(message = "The product ID cannot be null")
             Long idProduct,
-
             @PathVariable
             @NotNull(message =  "The quantity of products sold cannot be null")
             @Min(value = 0, message = "The quantity of products sold cannot be less than 0")
