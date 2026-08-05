@@ -1,0 +1,17 @@
+package io.github.macebot.inventory_management_api.product.mapper;
+
+import io.github.macebot.inventory_management_api.category.mapper.ICategoryMapper;
+import io.github.macebot.inventory_management_api.product.dto.CreateProductDto;
+import io.github.macebot.inventory_management_api.product.dto.ViewProductDto;
+import io.github.macebot.inventory_management_api.product.entity.Product;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = ICategoryMapper.class)
+public interface IProductMapper {
+    Product createDtoToProduct(CreateProductDto createProductDto);
+    ViewProductDto productTOViewDto(Product product);
+    List<ViewProductDto>  productListToDto(List<Product> products);
+
+}
