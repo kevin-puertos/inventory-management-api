@@ -13,5 +13,5 @@ API RESTful básica desarrollada con Spring Boot para gestión de inventario
 
 ## 🛠️ Requisitos Previos
 * **JAVA JDK 21** o superior.
-* ** Maven 3.9+**
-* ** PostgreSQL**
+* ** Maven 3.9+**.
+* ** PostgreSQL**.
