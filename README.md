@@ -3,6 +3,8 @@
 ##  📝 Descripción
 API RESTful básica desarrollada con Spring Boot para gestión de inventario
 
+![Java](https://img.shields.io/badge/Java-21-orange)
+
 ## 🚀 Tecnologías Utilizadas
 * **Java 21** - Lenguaje de programación principal.
 * **Spring Boot 4.1** - Herramienta de desarrollo de Spring.
