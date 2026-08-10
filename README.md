@@ -77,7 +77,7 @@ PostgreSQL
 src/
 ├── main/
 │   ├── java/
-│   │   └── io.github.macebor_inventory_maneagment/
+│   │   └── io.github.macebot_inventory_maneagment/
 │   │       ├── auth/
 │   │       ├── category/
 │   │       ├── config/
@@ -94,9 +94,6 @@ src/
 ```
 
 ---
-
-
-
 
 
 ---
@@ -129,7 +126,7 @@ http://localhost:8080/swagger-ui/index.html
 | -------- | ---------------- | --------------------------- | ------------------- |
 | `GET`    | `/api/products`      | Obtener todos los productos | Usuario autenticado |
 | `GET`    | `/api/products/{id}` | Obtener un producto         | Usuario autenticado |
-| `POST`   | `/api/products`      | Crear un producto           | `ADMIN`             |
+| `POST`   | `/api/products`      | Crear un producto           | Usuario autenticado |
 | `PUT`    | `/api/products/{id}` | Actualizar un producto      | `ADMIN`             |
 | `DELETE` | `/api/products/{id}` | Eliminar un producto        | `ADMIN`             |
 | `POST` | `/api/products/sell/{id}/{cantProducts}` | Restar stock por venta       | Usuario autenticado             |
@@ -138,19 +135,13 @@ http://localhost:8080/swagger-ui/index.html
 
 | Método   | Endpoint           | Descripción                  | Rol                 |
 | -------- | ------------------ | ---------------------------- | ------------------- |
-| `GET`    | `/categories`      | Obtener todas las categorías | Usuario autenticado |
-| `GET`    | `/categories/{id}` | Obtener una categoría        | Usuario autenticado |
-| `POST`   | `/categories`      | Crear una categoría          | `ADMIN`             |
-| `PUT`    | `/categories/{id}` | Actualizar una categoría     | `ADMIN`             |
-| `DELETE` | `/categories/{id}` | Eliminar una categoría       | `ADMIN`             |
+| `GET`    | `/api/categories`      | Obtener todas las categorías | Usuario autenticado |
+| `GET`    | `/api/categories/{id}` | Obtener una categoría        | Usuario autenticado |
+| `POST`   | `/api/categories`      | Crear una categoría          | Usuario autenticado |
+| `PUT`    | `/api/categories/{id}` | Actualizar una categoría     | `ADMIN`             |
+| `DELETE` | `/api/categories/{id}` | Eliminar una categoría       | `ADMIN`             |
 
 ---
-
-
-
-
-
-
 
 
 
@@ -200,7 +191,14 @@ jwt.expiration=${JWT_EXPIRATION}
 
 
 
+## 👨‍💻 Autor
 
+**Kevin Puertos**
+
+Desarrollador novato interesado en backend, Java y desarrollo de aplicaciones con Spring Boot.
+
+- GitHub: [@MaceHD_BOT](https://github.com/MaceHD_Bot)
+- LinkedIn: [Tu Nombre](https://linkedin.com/in/kevin-puertos-a09559428/)
 
 
 
