@@ -17,3 +17,16 @@ API RESTful básica desarrollada con Spring Boot para gestión de inventario
 * **JAVA JDK 21** o superior.
 * **Maven 3.9+**.
 * **PostgreSQL**.
+
+## 🚀 Características
+✅ CRUD de productos
+✅ Gestión de categorías
+✅ Registro de usuarios
+✅ Inicio de sesión
+✅ Autenticación mediante JWT
+✅ Autorización basada en roles
+✅ Roles de ADMIN y EMPLOYEE
+✅ Validación de datos
+✅ DTOs para las respuestas y solicitudes
+✅ Mapeo de entidades mediante MapStruct
+✅ Manejo global de excepciones
