@@ -60,6 +60,19 @@ SECRET_KEY=tu_clave_secreta
 JWT_EXPIRATION = 3600000
 ```
 
+### `application.properties`
+
+La aplicación obtiene estos valores desde variables de entorno:
+
+```properties
+spring.datasource.url=${DATABASE_URL}
+spring.datasource.username=${USERNAME}
+spring.datasource.password=${PASSWORD}
+
+jwt.secret=${SECRET_KEY}
+jwt.expiration=${JWT_EXPIRATION}
+```
+
 
 ## 🚀 Características
 - ✅ CRUD de productos
