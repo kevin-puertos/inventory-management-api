@@ -197,7 +197,7 @@ jwt.expiration=${JWT_EXPIRATION}
 
 Desarrollador novato interesado en backend, Java y desarrollo de aplicaciones con Spring Boot.
 
-- GitHub: [@MaceHD-BOT](https://github.com/MaceHD-BOT)
+- GitHub: [@kevin-puertosT](https://github.com/kevin-puertos)
 - LinkedIn: [Kevin Puertos](https://linkedin.com/in/kevin-puertos-a09559428/)
 
 
